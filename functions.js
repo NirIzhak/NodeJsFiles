@@ -25,13 +25,25 @@ const ConcatFiles = async () => {
     let num = GetRandNumber();
     for (let i = 1; i <= num; i++) {
         const data = await Read(i);
-        fs.appendFile(path.join(__dirname, 'files', 'stringtxt.txt'), `\n${data}`)
+        fs.appendFile(path.join(__dirname, 'files', 'stringtxt.txt'), `${data}\n`)
     }
     await fs.rename(path.join(__dirname, 'files', 'stringtxt.txt'), path.join(__dirname, 'files', 'concatTextFile.txt'));
+}
+
+// read file and print all data to log
+const ReadFile = async()=>{
+    let printToScreen;
+    for (let i = 1; i <= 5; i++) {
+    const data = await Read(i);
+    
+    printToScreen += data + "\n" + "*********************\n"
+    }
+    console.log(printToScreen)
 }
 
 
 module.exports = {
     Create,
-    ConcatFiles
+    ConcatFiles,
+    ReadFile
 };
